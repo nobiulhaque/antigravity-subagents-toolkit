@@ -34,6 +34,7 @@ jobs:
       - name: Test Linux/macOS Installation Script
         run: |
           chmod +x install.sh update.sh
+          mkdir -p /tmp/test-project
           ./install.sh /tmp/test-project
           test -d /tmp/test-project/.agents/skills/frontend-ui-specialist
           test -d /tmp/test-project/.agents/skills/backend-systems-engineer
