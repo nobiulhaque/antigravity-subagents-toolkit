@@ -1,0 +1,40 @@
+name: Validate Subagents Toolkit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Verify All Skills Have SKILL.md and Frontmatter
+        run: |
+          for skill_dir in template/.agents/skills/*; do
+            if [ -d "$skill_dir" ]; then
+              skill_file="$skill_dir/SKILL.md"
+              if [ ! -f "$skill_file" ]; then
+                echo "❌ Missing SKILL.md in $skill_dir"
+                exit 1
+              fi
+              # Check for YAML frontmatter delimiters
+              if ! head -n 1 "$skill_file" | grep -q "^---"; then
+                echo "❌ SKILL.md in $skill_dir is missing starting YAML frontmatter (---)"
+                exit 1
+              fi
+              echo "✅ Verified: $(basename "$skill_dir")"
+            fi
+          done
+
+      - name: Test Linux/macOS Installation Script
+        run: |
+          chmod +x install.sh update.sh
+          ./install.sh /tmp/test-project
+          test -d /tmp/test-project/.agents/skills/frontend-ui-specialist
+          test -d /tmp/test-project/.agents/skills/backend-systems-engineer
+          echo "✅ Install script verified successfully"
