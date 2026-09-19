@@ -32,11 +32,32 @@ Designed to eliminate LLM hallucinations and reduce token consumption by delegat
 
 ---
 
-## 📦 How to Use in Any Project
+## 📦 Quick Start (For New Users)
 
-### Method 1: Global Installation (Available in ALL Projects Automatically)
-These skills are already installed in your global Antigravity config (`~/.gemini/config/skills/`). 
-They automatically work in **any project you open with Antigravity** on this machine without needing to copy anything!
+Clone this repository and register all 11 specialists globally on your machine:
+
+**On Windows (PowerShell):**
+```powershell
+git clone https://github.com/nobiulhaque/antigravity-subagents-toolkit.git
+cd antigravity-subagents-toolkit
+powershell -ExecutionPolicy Bypass -File .\install.ps1 -Global
+```
+
+**On Linux / macOS (Bash):**
+```bash
+git clone https://github.com/nobiulhaque/antigravity-subagents-toolkit.git
+cd antigravity-subagents-toolkit
+chmod +x install.sh update.sh
+./install.sh
+```
+
+---
+
+## 🚀 How to Use in Any Project
+
+### Method 1: Global Installation (Available Everywhere Automatically)
+Once installed, these skills sit in your machine's global Antigravity configuration (`~/.gemini/config/skills/`). 
+They automatically work in **any project or workspace you open with Antigravity** without needing to copy anything!
 
 ### Method 2: Project-Specific Installation (1 Click)
 If you want to bundle these rules and skills directly into a specific project repository so your whole team can use them:
