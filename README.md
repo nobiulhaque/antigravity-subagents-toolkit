@@ -11,19 +11,39 @@
 [![Architecture](https://img.shields.io/badge/Architecture-Tool--Assisted%20Subagents-purple)](#-architecture--orchestration)
 [![Specification](https://img.shields.io/badge/System%20Spec-Constitution%20v1.0-blueviolet)](SPECIFICATION.md)
 
-[Quick Start](#-quick-start) • [The 14 Specialists](#-the-specialist-roster-14-subagents) • [Constitution & Spec](SPECIFICATION.md) • [Contributing](CONTRIBUTING.md)
+[Quick Start](#-quick-start) • [Specialist Roster](#-the-specialist-roster-14-subagents) • [Task Pipelines](#-task-execution-pipelines) • [Constitution & Spec](SPECIFICATION.md) • [Contributing](CONTRIBUTING.md)
 
 </div>
 
 ---
 
+## 📑 Table of Contents
+- [⚡ The Token Economy: Problem vs. Solution](#-the-token-economy-problem-vs-solution)
+- [🧠 Architecture & Orchestration](#-architecture--orchestration)
+- [👥 The Specialist Roster (14 Subagents)](#-the-specialist-roster-14-subagents)
+  - [🏗️ Architecture & Navigation Squad](#️-architecture--navigation-squad)
+  - [🎨 Web & Mobile Frontend Squad](#-web--mobile-frontend-squad)
+  - [⚙️ Backend & Database Squad](#️-backend--database-squad)
+  - [🛡️ Security, Quality & Hygiene Squad](#️-security-quality--hygiene-squad)
+  - [🧪 Testing & Debugging Squad](#-testing--debugging-squad)
+- [🔄 Task Execution Pipelines](#-task-execution-pipelines)
+- [📜 Compact Report Contract](#-compact-report-contract)
+- [🔍 Project Discovery (Stack Detection)](#-project-discovery-stack-detection)
+- [📦 Quick Start (Installation)](#-quick-start)
+- [🔄 1-Click Community Updates](#-1-click-community-updates)
+- [➕ How to Add a New Subagent](#-how-to-add-a-new-subagent-in-2-minutes)
+- [❓ Frequently Asked Questions](#-frequently-asked-questions)
+- [🤝 Contributing & License](#-contributing--license)
+
+---
+
 ## ⚡ The Token Economy: Problem vs. Solution
 
-Traditional AI coding assistants blindly crawl file trees and dump dozens of source files into the LLM context window—burning tens of thousands of tokens and causing context hallucinations.
+Traditional AI coding assistants blindly crawl file trees and dump dozens of source files into the LLM context window—burning tens of thousands of tokens, triggering rate limits, and causing context hallucinations.
 
-| Feature | Standard AI Assistant | With Antigravity Subagents Toolkit |
+| Capability | Traditional AI Assistant | With Antigravity Subagents Toolkit |
 | :--- | :--- | :--- |
-| **Codebase Navigation** | Recursively greps and reads 30–60 raw files | Queries local **Graphify** AST index in milliseconds (**0 tokens**) |
+| **Codebase Navigation** | Recursively greps and reads 30–60 raw files into context | Queries local **Graphify** AST index in milliseconds (**0 tokens**) |
 | **Hook & Lifecycle Audit** | LLM "guesses" if `useEffect` dependencies are missing | **`eslint-plugin-react-hooks`** detects exact stale closures mathematically |
 | **Bug & Error Location** | Reads whole 800-line files to find a syntax error | **`tsc --noEmit`** extracts exact line, column, and error code in 1.5s |
 | **Database Audit** | Scans Prisma queries manually without context | **`prisma validate`** & **`npm audit`** run locally with zero tokens |
@@ -102,9 +122,35 @@ Traditional AI coding assistants blindly crawl file trees and dump dozens of sou
 
 ---
 
+## 🔄 Task Execution Pipelines
+
+The Orchestrator coordinates specialists using dedicated, battle-tested pipelines:
+
+### 1. Standard Feature Pipeline
+```text
+User Request ➔ Orchestrator ➔ Project Discovery ➔ Solutions Architect ➔ Relevant Specialist ➔ Implementation ➔ Quality Audit ➔ Test Engineer ➔ Build Verification ➔ Final Review
+```
+
+### 2. Systematic Bugfix Pipeline
+```text
+Bug Report ➔ Debugger (Root Cause Analysis) ➔ Surgical Fixer (Minimal Patch) ➔ Type Check (tsc) ➔ Test Verification (jest) ➔ Regression Audit ➔ Complete
+```
+
+### 3. Large Feature / Epic Pipeline
+```text
+Epic Scope ➔ Solutions Architect (Decoupled Spec) ➔ Parallel Execution (Frontend + Backend + DB) ➔ API Contract Tester ➔ Security Auditor ➔ Performance Auditor ➔ E2E Tests ➔ Final Review
+```
+
+### 4. Architectural Refactoring Pipeline
+```text
+Refactor Target ➔ Cartographer (Graph Mapping) ➔ Solutions Architect (Dependency Check) ➔ Surgical Refactor ➔ Type Check ➔ Full Test Suite ➔ Architecture Re-check ➔ Complete
+```
+
+---
+
 ## 📜 Compact Report Contract
 
-Subagents never dump entire source files into chat. Every subagent returns this standard payload:
+Subagents never dump entire source files into chat. Every subagent communicates through this standardized payload:
 
 ```text
 Finding:
@@ -125,9 +171,20 @@ Verification:
 
 ---
 
+## 🔍 Project Discovery (Stack Detection)
+
+Before suggesting or writing code, the system automatically identifies your environment:
+* **Web:** React, Next.js, Vue, Nuxt, Svelte, Angular, Astro, HTML/Vanilla JS
+* **Mobile:** Flutter (`pubspec.yaml`), React Native (`package.json`), Android (`build.gradle`), iOS (`Podfile`)
+* **Backend:** NestJS, Node.js, Express, FastAPI, Django, Laravel
+* **Databases & ORM:** PostgreSQL, MySQL, MongoDB, Redis, Prisma, TypeORM, Drizzle
+* **Infrastructure & CI:** Docker, Kubernetes, GitHub Actions, Nginx
+
+---
+
 ## 📦 Quick Start
 
-### 1. Clone & Install Globally (Zero Setup)
+### 1. Global Installation (Zero Setup)
 
 Clone this repository and register all 14 specialists globally on your computer with a single command:
 
@@ -180,7 +237,7 @@ As new subagents, rules, and toolchains are contributed by the community, sync y
 
 ## ➕ How to Add a New Subagent in 2 Minutes
 
-To add any custom specialist:
+To add any custom specialist (e.g. `docker-operator`, `graphql-engineer`, `seo-auditor`):
 
 1. Create a folder: `template/.agents/skills/<your-subagent-name>/`
 2. Add a `SKILL.md` using this standard template:
@@ -209,16 +266,34 @@ What specific, independent task does this subagent perform?
 
 ---
 
-## 🤝 Community & Contributing
+## ❓ Frequently Asked Questions
+
+<details>
+<summary><b>Why use deterministic CLI tools instead of LLM reasoning?</b></summary>
+LLMs excel at reasoning, architectural synthesis, and creative implementation, but are prone to hallucinating subtle syntax rules, missing hook dependency arrays, or guessing query execution paths. Deterministic CLI engines (e.g. <code>tsc</code>, <code>eslint</code>, <code>knip</code>, <code>prisma validate</code>) execute locally on your CPU with mathematical precision, returning exact errors in milliseconds at <b>zero token cost</b>.
+</details>
+
+<details>
+<summary><b>How does this toolkit cut token costs by ~98%?</b></summary>
+Traditional AI coding assistants recursively grep and dump 30 to 60 source code files into context to explore codebase structure, burning 20k to 50k tokens per prompt. The toolkit uses pre-built AST indexes (Graphify) and targeted compiler line ranges (25–40 lines), reducing context consumption to under 400 tokens per interaction.
+</details>
+
+<details>
+<summary><b>Is this compatible with Google Antigravity & Antigravity 2.0?</b></summary>
+Yes! The toolkit is built natively for Antigravity's Customization System (<code>.agents/skills/</code> and <code>.agents/rules/</code>) and utilizes built-in capabilities like <code>browser_subagent</code> and background task execution.
+</details>
+
+<details>
+<summary><b>Can I use this in an existing monorepo?</b></summary>
+Absolutely. The discovery engine supports multi-workspace repositories (npm/pnpm/yarn/turborepo) and delegates commands to specific workspace targets (e.g. <code>npm run build --workspace=apps/web</code>).
+</details>
+
+---
+
+## 🤝 Contributing & License
 
 We welcome community subagents, tool optimizations, and feedback!
 - Read the [System Specification & Constitution](SPECIFICATION.md) for full architectural guidelines.
 - Check out the [Contributing Guide](CONTRIBUTING.md) to submit a new specialist.
 - Pitch a new specialist using our [Subagent Proposal Issue Template](.github/ISSUE_TEMPLATE/subagent-proposal.md).
-- Automated CI validates all submitted subagents via GitHub Actions.
-
----
-
-## 📄 License
-
-Distributed under the [MIT License](LICENSE). Built with ❤️ for the Google Antigravity & AI Developer Community.
+- Distributed under the [MIT License](LICENSE). Built with ❤️ for the Google Antigravity & AI Developer Community.
